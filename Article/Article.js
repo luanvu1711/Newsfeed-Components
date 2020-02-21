@@ -112,3 +112,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+ let createArticle = (headerContent, dateContent, para1Content, para2Content, para3Content) => {
+
+  let article = document.createElement('div');
+  article.classList.add('article');
+  //article.classList.add('article-open');
+    
+  let header = document.createElement('h2');
+  header.textContent = headerContent;
+    
+  let paraDate = document.createElement('p');
+  paraDate.classList.add('date');
+  paraDate.textContent = dateContent;
+    
+  let para1 = document.createElement('p');
+  let para2 = document.createElement('p');
+  let para3 = document.createElement('p');
+  
+  para1.textContent = para1Content;
+  para2.textContent = para2Content;
+  para3.textContent = para3Content;
+    
+  let expandButton = document.createElement('span');
+  expandButton.classList.add('expandButton');
+  expandButton.textContent = '\u25bc';
+
+  let buttonToggler = (e) => {
+    article.classList.toggle('article-open');
+
+  }   
+  
+  expandButton.addEventListener('click',buttonToggler)
+    
+  article.appendChild(header);
+  article.appendChild(paraDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expandButton);
+  console.log(article);
+    
+  return article;
+   }
+  
+  let body = document.querySelector('body');
+  
+  data.map((item) => {
+    let newArticle = createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph);
+    body.appendChild(newArticle);
+  })
